@@ -2,5 +2,49 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-fullpage": {
+      "projectType": "library",
+      "root": "projects/ngx-fullpage",
+      "sourceRoot": "projects/ngx-fullpage/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-fullpage/tsconfig.lib.json",
+            "project": "projects/ngx-fullpage/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-fullpage/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-fullpage/src/test.ts",
+            "tsConfig": "projects/ngx-fullpage/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-fullpage/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-fullpage/tsconfig.lib.json",
+              "projects/ngx-fullpage/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "daae04ce-3984-4e63-a979-c585810c2879"
+  },
+  "defaultProject": "ngx-fullpage"
 }
